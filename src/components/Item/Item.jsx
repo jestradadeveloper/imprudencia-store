@@ -1,0 +1,26 @@
+import { Link } from "react-router-dom"
+
+export const Item = ({ product }) => {
+
+  return (
+    <>
+      <div className="rounded overflow-hidden shadow-lg w-full md:w-4/12 px-4 mb-2">
+        <img className="w-full" src={product.pictureUrl} alt={product.title} />
+          <div className="px-3 py-4 flex flex-col flex-wrap justify-center text-center">
+            <div className="flex items-center w-full justify-start flex-wrap flex-col">
+              <div className="font-bold text-xl mb-2 w-full">{product.title.ti}</div>
+              <div className="w-full flex flex-col items-center justify-center my-2">
+                <strong>Categoria</strong>
+                <i className="ri-dashboard-fill"></i>
+                <span>{product.category}</span>
+              </div>
+              
+            </div>
+            
+            <Link to={`/item/${product.id}`} className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Ver Detalle</Link>
+          </div>
+        
+      </div>
+    </>
+  )
+}
