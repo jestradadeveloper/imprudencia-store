@@ -16,7 +16,9 @@ function App() {
     <CartProvider>
       <Provider store={store}>
         <BrowserRouter>
-          <Navbar />
+          <div className="relative">
+            <Navbar />
+          </div>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/cart" element={<CartPage />} />

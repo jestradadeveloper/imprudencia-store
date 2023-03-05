@@ -4,7 +4,7 @@ export const Categories = ({ categoriesList }) => {
   const { categories, isLoading } = useSelector((state) => state.products);
 
   return (
-    <ul className="flex">
+    <ul className="md:flex hidden">
       {categories &&
         categories.map((category) => (
           <CategoryItem key={category.slug} category={category} />

@@ -14,7 +14,7 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cart: state.cart.map((product) => {
-          if (product._id !== action.payload._id) return product;
+          if (product.slug !== action.payload.slug) return product;
           if (product.size !== action.payload.size) return product;
           return action.payload;
         }),

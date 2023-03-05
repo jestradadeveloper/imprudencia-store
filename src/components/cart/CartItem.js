@@ -8,6 +8,8 @@ const CartItem = ({ product, editable }) => {
 
   const onNewCartQuantityValue = (product, newQuantityValue) => {
     product.quantity = newQuantityValue;
+    console.log(product.quantity);
+    console.log(product);
     updateCartQuantity(product);
   };
   const removeProductInCart = (product) => {

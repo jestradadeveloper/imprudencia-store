@@ -18,7 +18,7 @@ const CategoryPage = () => {
 
   return (
     <>
-      <div className="h-96 bg-pink-200 text-white font-bold text-4xl justify-center items-center flex">
+      <div className="h-56 mt-20 md:mt-0 bg-pink-200 text-pink-400 font-bold text-4xl justify-center items-center flex">
         <h1>{categorySlug}</h1>
       </div>
       {products && <ItemListContainer products={products} />}

@@ -72,8 +72,7 @@ export const CartProvider = ({ children }) => {
       });
     //acumular
     const updatedProducts = state.cart.map((p) => {
-      if (p._id !== product._id) return p;
-      if (p.size !== product.size) return p;
+      if (p.slug !== product._slug) return p;
       //actualizar la cantidad
       p.quantity += product.quantity;
       return p;
