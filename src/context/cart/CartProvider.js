@@ -1,4 +1,4 @@
-import { FC, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import Cookie from "js-cookie";
 import { CartContext } from "./CartContex";
 import { cartReducer } from "./cartReducer";
@@ -6,7 +6,7 @@ const CART_INITIAL_STATE = {
   cart: [],
   numberOfItems: 0,
   subTotal: 0,
-  tax: 0,
+  tax: process.env.REACT_APP_PUBLIC_TAX_RATE,
   total: 0,
 };
 
@@ -18,12 +18,12 @@ export const CartProvider = ({ children }) => {
       const cookieProducts = Cookie.get("cart")
         ? JSON.parse(Cookie.get("cart"))
         : [];
-      console.log(cookieProducts);
       dispatch({
         type: "[Cart] - Load Cart from cookies | storage",
         payload: cookieProducts,
       });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: "[Cart] - Load Cart from cookies | storage",
         payload: [],
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }) => {
       (prev, current) => current.price * current.quantity + prev,
       0
     );
-    const taxRate = Number(process.env.NEXT_PUBLIC_TAX_RATE || 0);
+    const taxRate = Number(process.env.REACT_APP_PUBLIC_TAX_RATE || 0);
     const orderSummary = {
       numberOfItems,
       subTotal,

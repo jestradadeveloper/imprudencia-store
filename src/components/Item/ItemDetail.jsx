@@ -58,7 +58,7 @@ export const ItemDatail = () => {
       <div className="flex">
         <div className="w-6/12">
           <img
-            src={activeProduct.image.url}
+            src={`${activeProduct.image.url}?w=650`}
             alt={activeProduct.name}
             className="w-full"
           />
@@ -82,6 +82,7 @@ export const ItemDatail = () => {
                 currentValue={tempCartProduct.quantity}
                 updatedQuantity={onUpdateQuantity}
                 maxValue={activeProduct.stock > 5 ? 5 : activeProduct.stock}
+                label
               />
             </div>
             <div className="py-3">

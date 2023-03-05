@@ -4,7 +4,11 @@ export const Item = ({ product }) => {
   return (
     <>
       <div className="rounded overflow-hidden shadow-lg w-full md:w-4/12 px-4 mb-2">
-        <img className="w-full" src={product.image.url} alt={product.name} />
+        <img
+          className="w-full"
+          src={`${product.image.url}?w=400`}
+          alt={product.name}
+        />
         <div className="px-3 py-4 flex flex-col flex-wrap justify-center text-center">
           <div className="flex items-center w-full justify-start flex-wrap flex-col">
             <div className="font-bold text-xl mb-2 w-full">{product.name}</div>

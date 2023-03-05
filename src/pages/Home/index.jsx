@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { ItemListContainer } from "../../components/Item/ItemListContainer";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getAllProducts,
-  getAllCategories,
-  cleanActiveProduct,
-} from "../../store/products";
-import { useParams } from "react-router-dom";
+import { getAllProducts, getAllCategories } from "../../store/products";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategories());
-  }, [dispatch]);
+  }, []);
 
   return <>{products && <ItemListContainer products={products} />}</>;
 };

@@ -127,7 +127,6 @@ export const getAllProductsByCategorySlug = (categorySlug) => {
         if (errors) {
           console.error(errors);
         }
-        console.log(data);
         const products =
           data.categoryCollection.items[0].linkedFrom.productCollection.items;
         dispatch(setProducts(products));
@@ -174,7 +173,6 @@ export const getProductBySlug = (productSlug) => {
         if (errors) {
           console.error(errors);
         }
-        console.log(data);
         const product = data.productCollection.items[0];
         dispatch(setProductBySlug(product));
       });

@@ -23,11 +23,7 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         cart: state.cart.filter(
-          (product) =>
-            !(
-              product._id === action.payload._id &&
-              product.size === action.payload.size
-            )
+          (product) => !(product.slug === action.payload.slug)
         ),
       };
     case "[Cart] - Update order summary":

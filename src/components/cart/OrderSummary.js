@@ -12,6 +12,9 @@ const OrderSummary = () => {
       <p>{numberOfItems}</p>
       <strong>Subtotal:</strong>
       <p>$ {subTotal}.00</p>
+      <strong>Impuesto:</strong>
+      <p>$ {tax}.00</p>
+      <br />
       <strong>Total:</strong>
       <p>$ {total}.00 </p>
     </div>

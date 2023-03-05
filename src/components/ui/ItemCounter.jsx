@@ -1,4 +1,9 @@
-export const ItemCounter = ({ currentValue, updatedQuantity, maxValue }) => {
+export const ItemCounter = ({
+  currentValue,
+  updatedQuantity,
+  maxValue,
+  label,
+}) => {
   const decrementQuantity = () => {
     if (currentValue <= 1) return;
     const finalQuantity = currentValue - 1;
@@ -11,7 +16,8 @@ export const ItemCounter = ({ currentValue, updatedQuantity, maxValue }) => {
   };
   return (
     <div className="flex justify-start items-center text-lg">
-      <strong className="mr-3 ">Cantidad: </strong>
+      {label && <strong className="mr-3 ">Cantidad: </strong>}
+
       <button className="add-button text-pink-400" onClick={decrementQuantity}>
         <i className="ri-indeterminate-circle-line"></i>
       </button>

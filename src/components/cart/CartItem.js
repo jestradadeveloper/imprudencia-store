@@ -23,12 +23,12 @@ const CartItem = ({ product, editable }) => {
         >
           {product.name}
         </Link>
-        <div className="flex items-center justify-between w-full">
-          <div variant="flex mr-3">
+        <div className="flex items-center justify-between w-full divide-x divide-pink-200">
+          <div className="flex mr-3 px-2">
             <strong className="mr-2">Precio</strong>
             <span className="mr-3">$ {product.price}.00</span>
           </div>
-          <div className="flex">
+          <div className="flex px-2">
             {editable ? (
               <ItemCounter
                 currentValue={product.quantity}
@@ -36,6 +36,7 @@ const CartItem = ({ product, editable }) => {
                   onNewCartQuantityValue(product, newValue);
                 }}
                 maxValue={10}
+                label={false}
               />
             ) : (
               <span variant="h5">
@@ -43,6 +44,11 @@ const CartItem = ({ product, editable }) => {
                 {product.quantity > 1 ? "productos" : "producto"}
               </span>
             )}
+          </div>
+          <div className="flex px-4">
+            <strong className="text-pink-500">
+              $ {product.quantity * product.price}
+            </strong>
           </div>
           <div>
             {editable && (
@@ -52,7 +58,7 @@ const CartItem = ({ product, editable }) => {
                   removeProductInCart(product);
                 }}
               >
-                <i class="ri-delete-bin-7-fill"></i>
+                <i className="ri-delete-bin-7-fill"></i>
               </button>
             )}
           </div>

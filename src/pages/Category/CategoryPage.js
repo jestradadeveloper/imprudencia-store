@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getAllProductsByCategorySlug,
   getAllCategories,
-  cleanActiveProduct,
 } from "../../store/products";
 import { useParams } from "react-router-dom";
 
