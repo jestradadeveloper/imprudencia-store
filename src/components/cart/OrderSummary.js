@@ -23,8 +23,8 @@ const OrderSummary = () => {
 
           <p>{currency.format(tax)}</p>
         </div>
-        <div className="total pt-3">
-          <strong className="">Total:</strong>
+        <div className="total pt-3 text-pink-500 font-bold text-xl">
+          <strong>Total:</strong>
           <p>{currency.format(total)} </p>
         </div>
       </div>

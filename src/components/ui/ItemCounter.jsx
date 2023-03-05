@@ -15,17 +15,17 @@ export const ItemCounter = ({
     updatedQuantity(finalQuantity);
   };
   return (
-    <div className="flex justify-start items-center text-lg">
+    <div className="flex justify-center py-3 md:justify-start items-center text-lg w-full">
       {label && <strong className="mr-3 ">Cantidad: </strong>}
 
       <button className="add-button text-pink-400" onClick={decrementQuantity}>
-        <i className="ri-indeterminate-circle-line"></i>
+        <i className="ri-indeterminate-circle-line md:text-lg text-2xl"></i>
       </button>
-      <div className="p-2 mx-2 w-10 h-10 flex justify-center items-center text-pink-500 font-bold text-lg rounded-full">
-        {currentValue}
+      <div className="p-2 mx-2 w-10 h-10 flex justify-center items-center text-pink-500 font-bold text-lg rounded-full md:text-lg text-4xl">
+        <p className="md:text-lg text-2xl">{currentValue}</p>
       </div>
       <button className="add-button text-pink-400" onClick={incrementQuantity}>
-        <i className="ri-add-circle-line"></i>
+        <i className="ri-add-circle-line md:text-lg text-2xl"></i>
       </button>
     </div>
   );

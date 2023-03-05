@@ -16,7 +16,7 @@ export const ItemDatail = () => {
   const [tempCartProduct, setTempCartProduct] = useState({
     slug: "",
     image: "",
-    price: "",
+    price: 0,
     name: "",
     quantity: 1,
   });
@@ -55,19 +55,21 @@ export const ItemDatail = () => {
   };
   return (
     <div className="mx-auto mt-10 w-10/12">
-      <div className="flex">
-        <div className="w-6/12">
+      <div className="flex flex-col md:flex-row mt-24 md:mt-0">
+        <div className="w-full md:w-6/12">
           <img
             src={`${activeProduct.image.url}?w=650`}
             alt={activeProduct.name}
             className="w-full"
           />
         </div>
-        <div className="w-6/12 p-10">
+        <div className="w-full md:w-6/12 p-10">
           <strong className="text-pink-600">
             {activeProduct.category.name}
           </strong>
-          <h1 className="text-xl font-bold">{activeProduct.name}</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">
+            {activeProduct.name}
+          </h1>
           <div className="flex flex-col divide-y mt-4">
             <div className="py-3">
               <strong>Precio:</strong>
@@ -87,7 +89,7 @@ export const ItemDatail = () => {
             </div>
             <div className="py-3">
               <button
-                className="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded"
+                className="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-4 md:py-2 px-4 border border-pink-500 hover:border-transparent rounded w-full"
                 onClick={onAddProduct}
               >
                 Agregar al carrito

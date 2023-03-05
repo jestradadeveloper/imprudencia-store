@@ -23,12 +23,12 @@ const CartItem = ({ product, editable }) => {
         >
           {product.name}
         </Link>
-        <div className="flex items-center justify-between w-full divide-x divide-pink-200">
+        <div className="flex items-center md:justify-between w-full md:divide-x divide-pink-200 justify-center md:flex-nowrap flex-wrap">
           <div className="flex mr-3 px-2">
             <strong className="mr-2">Precio</strong>
             <span className="mr-3">{currency.format(product.price)}</span>
           </div>
-          <div className="flex px-2">
+          <div className="flex px-2 w-full">
             {editable ? (
               <ItemCounter
                 currentValue={product.quantity}
