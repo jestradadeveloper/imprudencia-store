@@ -1,41 +1,100 @@
-import { useState } from "react";
-import { useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { productsService } from "../../services/products";
+import { useSelector, useDispatch } from "react-redux";
+import { getProductBySlug, cleanActiveProduct } from "../../store/products";
+import { ItemCounter } from "../ui/ItemCounter";
+import { CartContext } from "../../context/cart/CartContex";
 
 export const ItemDatail = () => {
-  const [ product, setProduct ] = useState(null);
-  const { productId } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { addProductToCart } = useContext(CartContext);
+  const { activeProduct, isLoading } = useSelector((state) => state.products);
+  const { productSlug } = useParams();
+  const [tempCartProduct, setTempCartProduct] = useState({
+    slug: "",
+    image: "",
+    price: "",
+    name: "",
+    quantity: 1,
+  });
   useEffect(() => {
-    productsService.getProductById(productId).then(response=> setProduct(response))
-  }, [productId]);
-  if(product == null) return;
-  return(
+    dispatch(getProductBySlug(productSlug));
+    return () => {
+      dispatch(cleanActiveProduct());
+    };
+  }, [productSlug]);
+
+  if (activeProduct == null) return;
+
+  const selectedSize = (size) => {
+    setTempCartProduct((currentProduct) => ({
+      ...currentProduct,
+      size,
+    }));
+  };
+  const onUpdateQuantity = (quantity) => {
+    setTempCartProduct((currentProduct) => ({
+      ...currentProduct,
+      quantity,
+    }));
+  };
+  const onAddProduct = () => {
+    //llamar la accion del context para agregar al carrito
+    addProductToCart({
+      slug: activeProduct.slug,
+      name: activeProduct.name,
+      price: activeProduct.price,
+      image: activeProduct.image.url,
+      category: activeProduct.category.slug,
+      quantity: tempCartProduct.quantity,
+    });
+    navigate("/cart");
+  };
+  return (
     <div className="mx-auto mt-10 w-10/12">
-    <div className="flex">
+      <div className="flex">
         <div className="w-6/12">
-          <img src={product.pictureUrl } alt={product.title} className="w-full"/>
+          <img
+            src={activeProduct.image.url}
+            alt={activeProduct.name}
+            className="w-full"
+          />
         </div>
         <div className="w-6/12 p-10">
-          <h1 className="text-xl font-bold">{product.title}</h1>
+          <strong className="text-pink-600">
+            {activeProduct.category.name}
+          </strong>
+          <h1 className="text-xl font-bold">{activeProduct.name}</h1>
           <div className="flex flex-col divide-y mt-4">
             <div className="py-3">
               <strong>Precio:</strong>
-              <p>{product.price}</p>
+              <p>{activeProduct.price}</p>
             </div>
             <div className="py-3">
               <strong>Description:</strong>
-              <p>{product.description}</p>
+              <p>{activeProduct.description}</p>
             </div>
             <div className="py-3">
-              <button className="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded">
+              <ItemCounter
+                currentValue={tempCartProduct.quantity}
+                updatedQuantity={onUpdateQuantity}
+                maxValue={activeProduct.stock > 5 ? 5 : activeProduct.stock}
+              />
+            </div>
+            <div className="py-3">
+              <button
+                className="bg-transparent hover:bg-pink-500 text-pink-700 font-semibold hover:text-white py-2 px-4 border border-pink-500 hover:border-transparent rounded"
+                onClick={onAddProduct}
+              >
                 Agregar al carrito
               </button>
             </div>
-          </div> 
+          </div>
         </div>
+      </div>
     </div>
-    
-    </div>
-  )
-}
+  );
+};

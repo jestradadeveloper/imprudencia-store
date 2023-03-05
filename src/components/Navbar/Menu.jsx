@@ -1,6 +1,10 @@
-import { Categories } from "./Categories"
+import { Categories } from "./Categories";
+import { useSelector } from "react-redux";
 
 export const Menu = () => {
-  const CATEGORIES_LIST = [ 'Men', 'Women', 'Kid']
-  return <Categories categoriesList={CATEGORIES_LIST} />
-}
+  return (
+    <>
+      <Categories />
+    </>
+  );
+};

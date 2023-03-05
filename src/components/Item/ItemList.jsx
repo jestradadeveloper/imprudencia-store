@@ -1,18 +1,10 @@
-
-import { Item } from "./Item"
-import { productsService } from "../../services/products";
-import { useState, useEffect } from "react";
-export const ItemList= ({productsId}) => {
-  const [ products, setProduct ] = useState([])
-  useEffect(() => {
-    if (productsId !== undefined){
-      productsService.getProductsByCategory(productsId).then(response=> setProduct(response))
-    }else{
-      productsService.getAll().then(response=> setProduct(response))
-    }
-    
-  }, [productsId])
+import { Item } from "./Item";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCategories, getAllProducts } from "../../store/products/thunks";
+export const ItemList = ({ productsId, products }) => {
   return (
-    products.length === 0 ? <>Cargando...</> : ( products.map(product => <Item key={product.id} product={product}/>))
-  )
-}
+    products &&
+    products.map((product, index) => <Item key={index} product={product} />)
+  );
+};

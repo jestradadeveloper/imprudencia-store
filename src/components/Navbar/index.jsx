@@ -1,6 +1,7 @@
 import Brand from './Brand'
 import { Menu } from './Menu'
 import CartWidget from '../CartWidget'
+import { AuthUser } from '../AuthUser'
 export const Navbar = () => {
   return (
     <div className='w-full bg-yellow-100'>
@@ -8,6 +9,7 @@ export const Navbar = () => {
         <Brand />
         <Menu />
         <CartWidget />
+        <AuthUser />
       </div>
     </div>
   )

@@ -14,3 +14,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@layer components {
+  form {
+    @apply rounded flex flex-col;
+  }
+  [type='email'],[type='password']	{
+    @apply p-2 rounded-md outline-0 border border-pink-400 my-2 bg-pink-100 text-pink-700 font-bold;
+  }
+  [type='email']:focus,[type='password']:focus	{
+    @apply border-pink-600 outline-current outline-0;
+  }
+  label{
+    @apply font-bold;
+  }
+  h2{
+    @apply text-3xl font-bold text-pink-600 p-5 text-center;
+  }
+  [type='submit']{
+    @apply cursor-pointer border-0 font-bold border text-white bg-pink-600 py-2 px-2 rounded-lg;
+  }
+  [type='submit']:hover{
+    @apply bg-pink-400 text-pink-600 transition font-bold border border-pink-600;
+  }
+  [type='submit']:disabled{
+    @apply bg-gray-100 text-pink-200;
+  }
+}
