@@ -45,6 +45,7 @@ export const CartProvider = ({ children }) => {
       0
     );
     const taxRate = Number(process.env.REACT_APP_PUBLIC_TAX_RATE || 0);
+    console.log(taxRate);
     const orderSummary = {
       numberOfItems,
       subTotal,
@@ -72,7 +73,7 @@ export const CartProvider = ({ children }) => {
       });
     //acumular
     const updatedProducts = state.cart.map((p) => {
-      if (p.slug !== product._slug) return p;
+      if (p.slug !== product.slug) return p;
       //actualizar la cantidad
       p.quantity += product.quantity;
       return p;

@@ -2,14 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ItemCounter } from "../ui/ItemCounter";
 import { CartContext } from "../../context/cart/CartContex";
-
+import { currency } from "../../utils";
 const CartItem = ({ product, editable }) => {
   const { updateCartQuantity, removeCartProduct } = useContext(CartContext);
 
   const onNewCartQuantityValue = (product, newQuantityValue) => {
     product.quantity = newQuantityValue;
-    console.log(product.quantity);
-    console.log(product);
     updateCartQuantity(product);
   };
   const removeProductInCart = (product) => {
@@ -28,7 +26,7 @@ const CartItem = ({ product, editable }) => {
         <div className="flex items-center justify-between w-full divide-x divide-pink-200">
           <div className="flex mr-3 px-2">
             <strong className="mr-2">Precio</strong>
-            <span className="mr-3">$ {product.price}.00</span>
+            <span className="mr-3">{currency.format(product.price)}</span>
           </div>
           <div className="flex px-2">
             {editable ? (
@@ -49,7 +47,7 @@ const CartItem = ({ product, editable }) => {
           </div>
           <div className="flex px-4">
             <strong className="text-pink-500">
-              $ {product.quantity * product.price}
+              {currency.format(product.quantity * product.price)}
             </strong>
           </div>
           <div>

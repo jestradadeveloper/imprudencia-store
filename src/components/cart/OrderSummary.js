@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/cart/CartContex";
-
+import { currency } from "../../utils";
 const OrderSummary = () => {
   const { numberOfItems, subTotal, total, tax } = useContext(CartContext);
 
@@ -11,17 +11,21 @@ const OrderSummary = () => {
       <strong># Productos:</strong>
       <p>{numberOfItems}</p>
       <strong>Subtotal:</strong>
-      <p>$ {subTotal}.00</p>
+      <p>{currency.format(subTotal)}</p>
 
       <br />
       <div className="divide-y">
         <div className="impuesto mb-3">
-          <strong>Impuesto:</strong>
-          <p>$ {tax}.00</p>
+          <strong>
+            Impuesto: (
+            {Number(process.env.REACT_APP_PUBLIC_TAX_RATE) * 100 || 0} %)
+          </strong>
+
+          <p>{currency.format(tax)}</p>
         </div>
         <div className="total pt-3">
           <strong className="">Total:</strong>
-          <p>$ {total}.00 </p>
+          <p>{currency.format(total)} </p>
         </div>
       </div>
     </div>
